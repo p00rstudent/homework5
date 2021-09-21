@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 
 
-class RowHandler(metaclass=ABCMeta):
+class QueryHandler(metaclass=ABCMeta):
     _name = None
 
     @property
@@ -9,7 +9,7 @@ class RowHandler(metaclass=ABCMeta):
         return self._name
 
     @abstractmethod
-    def process(self, row: str):
+    def process(self, query: dict):
         pass
 
     @property

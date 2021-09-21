@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 
 from handlers import LogHandler
-from src.row_handler import TypeCountHandler, TopFreqIpHandler, TopSlowReqHandler
+from src.query_handler import TypeCountHandler, TopFreqIpHandler, TopSlowReqHandler, CountHandler
 
 ROOT_DIR = Path(__file__).parent
 
@@ -35,9 +35,9 @@ def get_dir_log_files(logs_dir: str, pattern: str = '*'):
 
 
 def parse_log_files(log_files, log_file: str = None):
-    handler = LogHandler(handlers=[TypeCountHandler(), TopFreqIpHandler(), TopSlowReqHandler()])
-    for log_file in log_files:
-        with log_file.open('r') as f:
+    handler = LogHandler(handlers=[CountHandler(), TypeCountHandler(), TopFreqIpHandler(), TopSlowReqHandler()])
+    for l_file in log_files:
+        with l_file.open('r') as f:
             for line in f:
                 handler.process(line)
     if log_file and Path(log_file).is_file():
