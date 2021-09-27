@@ -44,6 +44,7 @@ def parse_log_files(log_files, log_file: str = None):
         with Path(log_file).open('r') as f:
             for line in f:
                 handler.process(line)
+    print(f'Wrong lines count: {len(handler.wrong_rows)}')
     return handler.json
 
 
